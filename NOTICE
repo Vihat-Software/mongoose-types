@@ -1,0 +1,10 @@
+@vihat-software/mongoose-types contains code derived from:
+
+- mongoose-long (MIT) - Copyright (c) 2012 Aaron Heckmann
+  https://github.com/aheckmann/mongoose-long
+  Full text: licenses/mongoose-long.LICENSE
+
+- mongoose-int32 (Apache-2.0) - Valeri Karpov
+  https://github.com/vkarpov15/mongoose-int32
+  Full text: licenses/mongoose-int32.LICENSE
+  Changes: ported to TypeScript; the type is built per mongoose instance by registerInt32().

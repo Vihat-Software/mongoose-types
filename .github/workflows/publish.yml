@@ -1,0 +1,28 @@
+name: Publish
+
+# Publishes to npm via trusted publishing (OIDC, no stored token) when a version tag is pushed:
+#   npm version patch|minor|major && git push --follow-tags
+# One-time setup on npmjs.com: package settings > Trusted Publisher > GitHub Actions
+#   (org Vihat-Software, repo mongoose-types, workflow publish.yml).
+on:
+    push:
+        tags: ['v*']
+
+permissions:
+    contents: read
+    id-token: write
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  registry-url: https://registry.npmjs.org
+            - run: corepack enable
+            - run: yarn install --immutable
+            - run: yarn build
+            - run: yarn test
+            - run: npm publish
